@@ -6,10 +6,12 @@
     <input type="text" name="description" placeholder="Deskripsi">
     <input type="number" name="stock" placeholder="Stok" required>
     <input type="number" name="price" placeholder="Harga" required>
+
     <select name="category_id" required>
-        @foreach {{$categories as $category}}
-            <option value="{{ $category->id }}">{{ $category->name }}></option>
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach
     </select>
+
     <button type="submit">Simpan</button>
 </form>
