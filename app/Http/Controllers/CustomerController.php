@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Auth\Events\Validated;
 
 class CustomerController extends Controller
 {
@@ -32,7 +33,15 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
-        Customer::create($request->all());
+        $validated = $request->validated([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:customers,email',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        Customer::create($validated);
+
         return redirect()->route('customers.index');
     }
 

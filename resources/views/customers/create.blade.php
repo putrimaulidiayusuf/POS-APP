@@ -6,5 +6,5 @@
     <input type="email" name="email" placeholder="Email" required>
     <input type="text" name="address" placeholder="Alamat">
     <input type="text" name="phone" placeholder="No. Hp">
-    <button type="Submit">Simpan</button>
+    <button type="submit">Simpan</button>
 </form>
