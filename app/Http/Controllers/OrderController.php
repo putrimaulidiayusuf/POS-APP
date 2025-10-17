@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,7 +16,7 @@ class OrderController extends Controller
     {
         //
         $orders = Order::all();
-        return view('order.index', compact('orders'));
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -34,7 +35,18 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
-        Order::create($request->all());
+        $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+            'total' => 'required|numeric|min:0',
+        ]);
+
+        Order::create([
+            'invoice' => 'INV-'.strtoupper(uniqid()),
+            'customer_id' => $request->customer_id,
+            'user_id' => 'user_id',
+            'total' => $request->total,
+        ]);
+
         return redirect()->route('orders.index');
     }
 

@@ -1,8 +1,9 @@
 <h1>Buat Pesanan Baru</h1>
 
-<form action="{{ route($orders.store) }}" method="POST">
+<form action="{{ route('orders.store') }}" method="POST">
     @csrf
-    <select name="customer_id" id="" required>
+    <label for="customer_id">Pilih Customer</label>
+    <select name="customer_id" id="customer_id" required>
         <option value="">Pilih Customer</option>
         @foreach ($customers as $customer)
             <option value="{{ $customer->id }}">{{ $customer->name }}</option>
