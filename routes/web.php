@@ -9,7 +9,7 @@ use App\Http\Controllers\OrderDetailController;
 
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
-Route::resource('Customers', CustomerController::class);
+Route::resource('customers', CustomerController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('order_details', OrderDetailController::class);
 
